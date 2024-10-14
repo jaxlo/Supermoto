@@ -56,3 +56,11 @@ func root(w http.ResponseWriter, r *http.Request) {
 
 (TODO explain the GET, {$} and w,r vars and types)
 
+
+Why the router works the way it does:
+https://go.dev/blog/routing-enhancements 
+
+Documentation for the router URL things
+https://pkg.go.dev/net/http@go1.23.2#hdr-Patterns-ServeMux
+(Why are these docs so hard to find?)
+(Go docs are great if you know what you are looking for. But very approachable for beginners)

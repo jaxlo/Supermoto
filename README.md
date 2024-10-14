@@ -1,11 +1,21 @@
 # go-mega-tutorial
 A multi page tutorial for building fullstack websites in Go
 
-Chapter 1: Go hello worlds (Move basic HTML here?)
-Chapter 2: HTML, forms and Database (Standard lib) (Making a comment section/wall)
-Chapter 3: Architectue & tooling (Introduce the idea that these tools really speed up development) Architectue
-Chapter 4: Templ, CSS
-Chapter 5: HTMX
+This tutorial will guide you through programing and deploying a personal website. This website will have an about section, comment wall and posts
+
+[ ] <- Hey look, it's your own little website
+
+
+## Chapters
+
+Chapter 1: Go hello worlds
+Chapter 2: HTML, CSS, staticfiles
+Chapter 3: Templates, forms
+Chapter 4: Databases (Making a comment section/wall)
+
+-- TBD --
+Chapter 4: Middleware? Hot reload?
+Chapter 5: Templ, HTMX
 Chapter 6: Databases with SQLC
 Chapter 7: Databases migrations with Goose (Combine with SQLC?)
 Chapter 8: Auth/login
