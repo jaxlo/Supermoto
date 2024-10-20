@@ -10,12 +10,13 @@ This tutorial will guide you through programing and deploying a personal website
 
 Chapter 1: Go hello worlds
 Chapter 2: HTML, CSS, staticfiles
-Chapter 3: Templates, forms
+Chapter 3: Templates
+Chapter 4: Forms
 Chapter 4: Databases (Making a comment section/wall)
 
 -- TBD --
-Chapter 4: Middleware? Hot reload?
-Chapter 5: Templ, HTMX
+Chapter 4: Middleware and authentication
+Chapter 5: Templ, HTMX, hot reload?
 Chapter 6: Databases with SQLC
 Chapter 7: Databases migrations with Goose (Combine with SQLC?)
 Chapter 8: Auth/login
