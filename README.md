@@ -40,6 +40,9 @@ This is a Go way of doing thigs. But with tools to speed things up
 Change to the Go Fullstack Tutorial? Or include some API things?
 Write a corresponding blog post with design decisions for the tutorial. (This is also a great place to get feedback)
 
+Explore these libraries?
+https://go.dev/solutions/webdev
+
 
 ## Jackson's thoughts
 My goal with this project is to document a productive development stack in Go. (For my future projects and to help others with their projects)
@@ -50,3 +53,5 @@ A lot of the go standard library is seen as difficult and limited. While you do 
 What if that's what I build? A book for go web developers (Web and fullstack). I like Go better than Python/Flask in terms of toos. But using go takes up more developement time because of difference in documentation styles. If I want to learn about go html templeates, I have to reference html/tmpl. But to learn the features of htm/tmpl, I have to reference text/tmpl. And once I'm here, the documentation is made for people who know what they are already looking for.
 
 There is also the nice side befefit that Go code does not change much from year to year. So a program you wrote 4 years ago is very likely to complile and run well today. (That is not the case with Node/React)
+
+TODO Rename because there is an older tutorial with this title

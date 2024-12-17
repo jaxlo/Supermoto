@@ -7,6 +7,10 @@
 ## Static files
 - Let's add style by using static files like css and images
 
+## CSS frameworks
+- Writing your own CSS is great but slow. Look into frameworks?
+- Ui kit looks like the new bootstrap. Also recommend bulma?
+
 
 
 
