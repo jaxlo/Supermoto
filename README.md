@@ -5,6 +5,9 @@ This tutorial will guide you through programing and deploying a personal website
 
 [ ] <- Hey look, it's your own little website
 
+*Rename this The Go Supermoto Tutorial*
+
+There is already a go mega tutorial. And Go Supermoto has better SEO
 
 ## Chapters
 
