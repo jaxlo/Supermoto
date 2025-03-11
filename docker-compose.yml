@@ -1,0 +1,7 @@
+services:
+  web:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Expose the internal container port to the host system (Disable this in prod with docker-compose.override.yml?)
+
