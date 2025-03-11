@@ -1,11 +1,9 @@
-# go-mega-tutorial
+# go-supermoto-tutorial
 A multi page tutorial for building fullstack websites in Go
 
 This tutorial will guide you through programing and deploying a personal website. This website will have an about section, comment wall and posts
 
 [ ] <- Hey look, it's your own little website
-
-*Rename this The Go Supermoto Tutorial*
 
 There is already a go mega tutorial. And Go Supermoto has better SEO
 
