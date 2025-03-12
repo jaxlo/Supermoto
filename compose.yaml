@@ -1,0 +1,6 @@
+# This is the base compose file. It contains settings that are the same for dev, prod and all other environments
+services:
+  web:
+    build:
+      dockerfile: Dockerfile
+    restart: always

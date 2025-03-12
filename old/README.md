@@ -56,3 +56,5 @@ What if that's what I build? A book for go web developers (Web and fullstack). I
 There is also the nice side befefit that Go code does not change much from year to year. So a program you wrote 4 years ago is very likely to complile and run well today. (That is not the case with Node/React)
 
 TODO Rename because there is an older tutorial with this title
+
+

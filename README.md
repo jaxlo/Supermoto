@@ -8,3 +8,15 @@ A guide for building fullstack websites in Go
 - [ ] Hosting guide
 
 I like the ide of a reference page. Add links within the page
+
+
+
+
+
+
+
+Testing:
+docker compose up
+
+Prod:
+docker compose -f docker-compose.dev.yml up (And whatever makes it keep running)
