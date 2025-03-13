@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Starting webserver...")
+	fmt.Println("Starting on port 8080...")
 
 	// Make a router. Aka Http request multiplexer
 	mux := http.NewServeMux()

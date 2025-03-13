@@ -1,3 +1,11 @@
+# This runs on a server with multiple websites. These all share the Docker web-network so their hostnames are accessible to caddy
+# You don't need this for basic Docker usage. Docker will create a network just for you
 services:
-  web:
+  supermoto-web:
+    networks:
+      -  web-network
 
+networks:
+  web-network:
+    external: true
+# Note: These settings mean that the web-network must be created first. (This network is shared by multiple website containers so they are accessible by a reverse proxy)

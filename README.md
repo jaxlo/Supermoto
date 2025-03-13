@@ -1,6 +1,7 @@
 # Supermoto
 A guide for building fullstack websites in Go
 
+- [ ] Build Docker config and deploy
 - [ ] Home page and introduction (Link to the thesis)
 - [ ] Quickstart
 - [ ] Cookbook? Reference page?
@@ -9,14 +10,11 @@ A guide for building fullstack websites in Go
 
 I like the ide of a reference page. Add links within the page
 
-
-
-
-
-
-
-Testing:
-docker compose up
+Local testing:
+docker compose -f compose.yaml -f compose.dev.yaml up
 
 Prod:
-docker compose -f docker-compose.dev.yml up (And whatever makes it keep running)
+docker compose -f compose.yaml -f compose.prod.yaml up -d --build
+-d runs it in detached mode
+--build rebuilds the entire thing
+

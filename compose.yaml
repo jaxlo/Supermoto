@@ -1,6 +1,7 @@
 # This is the base compose file. It contains settings that are the same for dev, prod and all other environments
 services:
-  web:
+  supermoto-web:
+    restart: unless-stopped
     build:
       dockerfile: Dockerfile
-    restart: always
+
