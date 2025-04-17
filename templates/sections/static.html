@@ -1,0 +1,69 @@
+{{define "title"}}Static files // Supermoto{{end}}
+
+{{define "main"}}
+<div class="border padding margin-bottom">
+    <h1>Serving static files</h1>
+
+<p>
+    To start simple, we can return a single file with <code class="language-go">http.ServeFile()</code>
+</p>
+
+<pre class="">
+<code class="language-go">func FishJson(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "static/fish.json")
+}</code>
+</pre>
+
+<p>
+    This is just like any other Go HTTP handler. You can register this particular one like this:
+</p>
+
+<pre class="">
+<code class="language-go">mux.HandleFunc("GET /2025/fish", FishJson)</code>
+</pre>
+
+<p>
+    It is worth noting that this works with all kinds of files.
+    This is particularly useful as a temporary HTML "Coming soon" page.
+</p>
+
+</div>
+
+
+<div class="border padding margin-bottom">
+    <h2>Serving static files from a folder</h2>
+
+    <p>
+        Sending a single file is great but what if we want to make a directory accessible?
+        We can use built-in Go functions to accomplish this:
+    </p>
+
+<pre class="">
+<code class="language-go">func StaticFiles(w http.ResponseWriter, r *http.Request) {
+    // Create a file server to expose the specified directory
+    fs := http.FileServer(http.Dir("staticfiles"))
+    // And remove the path/prefix so the files are accessible directly on /static
+    http.StripPrefix("/static", fs).ServeHTTP(w, r)
+}</code>
+</pre>
+
+<p>
+    This is what it would look like to register the handler:
+</p>
+
+<pre class="">
+<code class="language-go">mux.HandleFunc("GET /static/", StaticFiles)</code>
+</pre>
+
+<p>
+    The folder <code class="language-bash">staticfiles</code> is local.
+    Users can access it's contents by going to the <code class="language-bash">/static</code> endpoint.
+</p>
+<p>
+    One feature of this approach is that your files are viewable because of how <code class="language-go">http.FileServer()</code> works.
+    An example of this is the <a href="/static" target="_blank">/static</a> path on this website.
+</p>
+
+</div>
+
+{{end}}

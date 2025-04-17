@@ -1,0 +1,201 @@
+{{define "title"}}Getting Started // Supermoto{{end}}
+
+{{define "main"}}
+<div class="border padding margin-bottom">
+    <h1>Getting started</h1>
+    <p>Why Go?</p>
+
+    <p>
+        I started building websites with Go because of my dissatisfaction with popular web development frameworks.
+        Django/Flask had too many constraints and the Javascript ecosystem moves quickly and requires rewrites every few years.
+        Coming from a startup background, I desired a flexible and efficient framework for solo or small team projects.
+        Go fulfills this need nicely.
+        Just like a Supermoto motorcycle, Go is built to be extensible and has the flexibility to do nearly everything.
+        Here are some more reasons to chose Go:
+    </p>
+
+    <ul>
+        <li>Simple, built-in package management</li>
+        <li>Full IDE integrations that auto format/prettify</li>
+        <li>Backward compatibility ensures code can be operational for years with little maintenance</li>
+        <li>The standard library has building blocks for nearly every use case</li>
+        <li>Go being statically typed helps as the codebase and contributors grow in size over time</li>
+        <li>Compile time verification and quick execution</li>
+        <li>Go does not get in the way of using Postgres databases to the fullest</li>
+    </ul>
+    <p>
+        Despite all of these advantages, almost nobody uses Go for fullstack development.
+        I believe this is due to the lack of tutorials and because the Go documentation is very unintuitive for beginners.
+        This tutorial aims to bridge that gap.
+    </p>
+    <p>
+        This is also my capstone project for Utah Valley University's <a href="https://www.uvu.edu/is/thesis.html">Integrated Studies</a> degree.
+        It combines the disciplines of Computer Science and Information Systems & Technology.
+    </p>
+</div>
+
+<div class="border padding margin-bottom">
+    <h2>Setting up a development environment</h2>
+    <p>
+        To get started, <a href="https://go.dev/doc/install">install Go</a> and an IDE.
+        I recommend <a href="https://vscodium.com/">VS Codium</a>.
+    </p>
+
+    <p>In the terminal, make a new go module. I'm calling this one <code class="language-bash">site</code> but you can change the name for your use:</p>
+    <code class="language-bash">
+        go mod init site
+    </code>
+
+    <p>
+        This creates a file declaring what Go version we are using.
+        Once we install modules, this file will also track our imported modules and their versions.
+    </p>
+
+    <p>
+        To start, we are going to write a quick Hello World! to start.
+        Create a new file called <code class="language-bash">main.go</code> next to <code class="language-bash">go.mod</code>.
+    </p>
+
+    <div>
+<pre class="line-numbers">
+<code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello World!")
+}</code>
+</pre>
+    </div>
+
+    <p>
+        Type <code class="language-bash">go run main.go</code> to run the program.
+    </p>
+
+    <p>You should see "Hello World!" in the terminal.</p>
+</div>
+
+<div class="border padding margin-bottom">
+    <h2>Routing</h2>
+
+    <p>
+        Now that we verified that Go is working, we can start building a website.
+        The core of any website is the router.
+        This is what runs different parts of the code to respond to website traffick.
+        We are going to use the router built into the Go programming language. (Version 1.22 and newer)
+    </p>
+<pre class="line-numbers">
+<code class="language-go">import (
+    "fmt"
+    "net/http"
+)
+
+func main() {
+    fmt.Println("Starting webserver...")
+
+    // Make a router. Aka the Http request multiplexer
+    mux := http.NewServeMux()
+
+    // Define a handler to run if there is a request to the webserver
+    mux.HandleFunc("/", homeHandler)
+
+    // This runs on the specified port with the router we defined above
+    http.ListenAndServe(":8000", mux)
+}
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello web!")
+}</code>
+</pre>
+    <p>
+        Congrats! You have technically built a website!
+    </p>
+    <img src="/static/images/hello_web.png" class="image" loading="lazy">
+    <p>Oh hey, it works for other URL variations too.</p>
+    <img src="/static/images/wait_what.png" class="image" loading="lazy">
+    <p>
+        Now this is where the Go router gets interesting.
+    </p>
+    <p>
+        The <code class="language-go">"/"</code> variation matches with any incoming request.
+        But if another route is defined as <code class="language-go">"/about"</code>, that one will be prioritized because it is more specific.
+    </p>
+    <p>
+        For web pages that require a specific URL, ending with a letter is convention: <code class="language-go">"/about/team1"</code>.
+        This will not match any other URL variations like <code class="language-go">"/about/team1/nope"</code>.
+    </p>
+    <p>
+        But if wou would like to end with a slash, just add <code class="language-go">"{$}"</code> at the end.
+    </p>
+    <p>
+        This also applies to the root URL.
+        If we write the route as <code class="language-go">"/{$}"</code>, it will only match with <code class="language-go">"localhost:8000"</code>.
+        (Note that <code class="language-go">"example.com/"</code> will automatically be redirected to <code class="language-go">"example.com"</code>.)
+    </p>
+    <p>
+        Here is an example:
+    </p>
+<pre class="line-numbers">
+<code class="language-go">package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func main() {
+    fmt.Println("Starting webserver...")
+
+    // Make a router. Aka Http request multiplexer
+    mux := http.NewServeMux()
+
+    // Define a handler to run if a request to the webserver
+    mux.HandleFunc("/{$}", homeHandler)
+    mux.HandleFunc("/about", aboutHandler)
+
+    // This runs on the specified port with the router we defined above
+    http.ListenAndServe(":8000", mux)
+}
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Welcome to the home page!")
+}
+
+func aboutHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "About the website")
+}</code>
+</pre>
+    <p>
+        The go router has many ways to match with URL variations.
+        You can even specify different handlers for different HTTP methods like this:
+    </p>
+<pre>
+<code class="language-go">mux.HandleFunc("GET /contact", getContactHandler)
+// and
+mux.HandleFunc("POST /contact", postContactHandler)</code>
+</pre>
+
+    <!-- <p>
+        (If you don't know what this is, don't worry. We will get to it later.)
+    </p> -->
+    <p>
+        This is a perfect example of why Go is so awesome. The router is as simple as possible while being as extensible as possible.
+        For more info, check out the <a href="https://pkg.go.dev/net/http#hdr-Patterns-ServeMux">net/http documentation</a>.
+        And the Go developers' router <a href="https://go.dev/blog/routing-enhancements">explanation</a>.
+    </p>
+    <!--
+    TODO add code with this link:
+    https://github.com/jaxlo/go-supermoto-tutorial
+    -->
+    <p>
+        The next step in development is usually serving <a href="/section/handlers">HTML and CSS</a> or <a href="/section/apis">JSON with an API</a>.
+    </p>
+</div>
+
+{{end}}
+ 
+
+{{/*
+    Up next: Program the links for the table of contents and make it responsive.
+    Do I need an intro page? The table of contents will be in the right column
+*/}}

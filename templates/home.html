@@ -1,0 +1,76 @@
+{{define "title"}}Home // Supermoto{{end}}
+
+
+{{define "main"}}
+
+<div class="border padding-sides margin-bottom">
+    <h1>Intro</h1>
+    <p>
+        To build websites in most programming languages, you use a framework with plenty of documentation.
+        Go is different because it's standard library contains everything to needed build websites.
+        Unfortunately, this means that the documentation specific to build websites is minimal.
+    </p>
+    <p>
+        This website aims to bridge that gap by providing code examples and explanations for different design decisions.
+    </p>
+    <p>
+        And the code for this website is public on <a href="https://github.com/jaxlo/Supermoto">GitHub</a>.
+        It serves as an example of what it looks like to run Go in production.
+    </p>
+
+    <h2>About</h2>
+    <p>
+        Like the Supermoto motorcycles that easily transition from dirt jumps to asphalt racing, this website enables developers to create websites capable of handling diverse challenges.
+    </p>
+    <p>
+        The name Supermoto also allows for quick search engine queries like a framework. "go supermoto templates" should make this website show up at the top search results.
+    </p>
+    <p>
+        This website is part of a capstone by <a href="https://jaxlo.net">Jackson Lohman</a> for an Integrated Studies degree at <a href="https://uvu.edu">Utah Valley University</a>.
+        To learn more, read the paper:
+        <a href="/static/IEEE_Go_for_Web_Development.pdf">Understanding Go Web Framework Popularity and Enabling Standard Library Adoption Through Practical Examples</a>
+    </p>
+</div>
+
+<div class="border padding-sides margin-bottom">
+    <h2>Hello World</h2>
+    <p>
+        Here is what it looks like to return Hello World! in Go:
+    </p>
+
+<!-- This is not indented because the whitespace is visible in the final page -->
+<pre class="line-numbers">
+<code class="language-go">package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func main() {        
+    // Make a router. (Often called a multiplexer in Go)
+    mux := http.NewServeMux()
+
+    // Define a handler to run if a request to the webserver
+    mux.HandleFunc("/hello", helloHandler)
+
+    // This runs on the specified port with the router we defined above
+    http.ListenAndServe(":8000", mux)
+}
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Helloooooooooooooo World!")
+}</code>
+</pre>
+
+    <p>
+        If you are new to Go, the <a href="/section/getting_started">Getting started</a> section is a good place to start.
+    </p>
+
+    <p>
+        Otherwise, pick a section in the right nav to learn more about a specific topic.
+    </p>
+</div>
+
+
+{{end}}

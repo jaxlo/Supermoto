@@ -1,0 +1,38 @@
+{{define "title"}}APIs // Supermoto{{end}}
+
+{{define "main"}}
+<div class="border padding margin-bottom">
+    <h1>JSON APIs</h1>
+
+    <p>
+        The most common 
+    </p>
+
+<pre class="line-numbers">
+<code class="language-go">package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func main() {        
+    // Make a router. (Often called a multiplexer in Go)
+    mux := http.NewServeMux()
+
+    // Define a handler to run if a request to the webserver
+    mux.HandleFunc("/hello", helloHandler)
+
+    // This runs on the specified port with the router we defined above
+    http.ListenAndServe(":8000", mux)
+}
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Helloooooooooooooo World!")
+}</code>
+</pre>
+
+
+</div>
+
+{{end}}

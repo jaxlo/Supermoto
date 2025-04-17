@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{block "title" .}}Go Supermoto{{end}}</title>
+    <link rel="stylesheet" href="/static/jaxlo.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link href="/static/prism/prism.css" rel="stylesheet" />
+    <style>
+        @font-face {
+            font-family: pixel;
+            src: url('/static/Pixellari.ttf');
+            font-display: swap; /* This means the font will be swapped in when it loads */
+        }
+        @font-face {
+            font-family: ubuntu;
+            src: url('/static/Ubuntu/Ubuntu-Regular.ttf');
+            font-display: swap;
+        }
+    </style>
+</head>
+<body style="background-color: var(--background);">
+    <div class="grid-container">
+        <div class="grid-header">
+            <div class="border margin-bottom">
+                <div class="margin">
+                    <a class="top-supermoto" href="/">Go Supermoto</a>
+                </div>
+            </div>
+        </div>
+        <div class="grid-main ">
+            {{block "main" .}}<div class="border padding-sides"><p>This is the base template</p></div>{{end}}
+        </div>
+        <div class="grid-sidebar">
+            <div class="border padding-sides margin-bottom">
+                <h2>Navigation</h2>
+                <p><a href="/section/getting_started">Getting Started</a></p>
+                <p><a href="/section/handlers">Serving HTML and CSS</a></p>
+                <p><a href="/section/apis">JSON APIs</a></p>
+                <p><a href="/section/templates">HTML Templates</a></p>
+                <p><a href="/section/forms">Forms and Authentication</a></p>
+            </div>
+        </div>
+
+    </div>
+    <script src="/static/prism/prism.js"></script>
+</body>
+</html>
