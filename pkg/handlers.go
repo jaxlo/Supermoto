@@ -21,9 +21,9 @@ func SectionStatic(w http.ResponseWriter, r *http.Request) {
 	ServeTemplates(w, nil, []string{"templates/base.html", "templates/sections/static.html"})
 }
 
-func sectionApis(w http.ResponseWriter, r *http.Request) {
-	ServeTemplates(w, nil, []string{"templates/base.html", "templates/sections/apis.html"})
-}
+// func sectionApis(w http.ResponseWriter, r *http.Request) {
+// 	ServeTemplates(w, nil, []string{"templates/base.html", "templates/sections/apis.html"})
+// }
 
 func sectionTemplates(w http.ResponseWriter, r *http.Request) {
 	ServeTemplates(w, nil, []string{"templates/base.html", "templates/sections/templates.html"})

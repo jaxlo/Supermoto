@@ -17,7 +17,7 @@ func RunRouter() {
 	mux.HandleFunc("/{$}", homeHandler)
 	mux.HandleFunc("/section/getting_started", sectionGetting_started)
 	mux.HandleFunc("/section/static", SectionStatic)
-	mux.HandleFunc("/section/apis", sectionApis)
+	// mux.HandleFunc("/section/apis", sectionApis)
 	mux.HandleFunc("/section/templates", sectionTemplates)
 	mux.HandleFunc("/section/forms", sectionForms)
 

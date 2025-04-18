@@ -1,12 +1,12 @@
 # Supermoto
-A guide for building fullstack websites in Go
+A guide for building fullstack websites in Go.
 
 - [x] Build Docker config and deploy
 - [x] Home page and introduction (Link to the thesis)
 - [x] Quickstart/Hello World
 - [ ] A basic set of sections for fullstack web dev
 - [ ] SEO
-- [ ] QOL features. Sticky nav, click to copy, 
+- [ ] QOL features. Sticky nav, click to copy, Ect.
 - [ ] Database (Implement this for comments)
 - [ ] Hosting guide
 

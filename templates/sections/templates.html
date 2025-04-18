@@ -3,39 +3,121 @@
 {{define "main"}}
 <div class="border padding margin-bottom">
     <h1>HTML Templates</h1>
+    <p>
+        Go <a href="https://pkg.go.dev/text/template" target="_blank">templates</a> are made to be very adaptable.
+        This allows for many different approaches for template architectures.
+        This guide builds a simple and extensible parent/child template system.
+        If you are coming from a React ecosystem, you might like <a href="https://templ.guide/" target="_blank">Templ</a>.
+    </p>
+
+    <p>Here is what the most basic Go template looks like:</p>
+
+<pre class="line-numbers">
+<code class="language-go">package main
+
+import (
+    "html/template"
+    "net/http"
+)
+
+func main() {
+    // Define a template
+    tmpl := template.Must(template.New("hello").Parse(`
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;body&gt;
+            &lt;h1&gt;Hello, {{`{{.}}`}}!&lt;/h1&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    `))
+
+    // Make a router
+    mux := http.NewServeMux()
+
+    // Define a handler to run if a request to the webserver
+    mux.HandleFunc(" GET /hello", getHello)
+
+    http.ListenAndServe(":8000", mux)
+}
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+    tmpl.Execute(w, "World") // You can change "World" to any string
+}</code>
+</pre>
+
+    <p>The <a href="https://pkg.go.dev/text/template#hdr-Actions">go template</a> documentation lists all of the different things you can do in templates.</p>
 
 </div>
 
 
-## Temp examples
+<div class="border padding margin-bottom">
+    <h2>A production ready example</h2>
 
+    <p>
+        Here is a production ready example from <a ="https://Jaxlo.net" target="_blank">jaxlo.net</a>.
+        Notice that the errors tell the end user that something went wrong.
+        But the exact error ,with potential sensitive data, is sent to the terminal/log.
+    </p>
 
-### Render a template with variables
-
-func ServeTemplates(w http.ResponseWriter, data any, templatePaths []string) error {
+<pre class="line-numbers">
+<code class="language-go">func ServeTemplates(w http.ResponseWriter, data any, templatePaths []string) error {
 	// If there is a base template, it should be first in templatePaths
 	t, err := template.ParseFiles(templatePaths...)
 	if err != nil {
 		http.Error(w, "Error parsing template", http.StatusInternalServerError) // This tells the user something went wrong
-		fmt.Println("Error parsing template:", err)
+		log.Println("Error parsing template:", err)
 		return err
 	}
 	err = t.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Error executing template", http.StatusInternalServerError)
-		fmt.Println("Error executing template:", err)
+		log.Println("Error executing template:", err)
 		return err
 	}
 	return nil
-}
+}</code>
+</pre>
 
-func GetPosts(w http.ResponseWriter, r *http.Request) {
-	posts := Posts()
-	ServeTemplates(w, map[string]any{"r": r, "posts": posts}, []string{"views/base.html", "views/root.html"})
-}
+<p>This is what this looks like when used in a handler with multiple variables.</p>
 
-At image of the invisible, head home for tuna lunch.
+<pre class="line-numbers">
+<code class="language-go">func GetPosts(w http.ResponseWriter, r *http.Request) {
+	posts := Posts() // Defined elsewhere. This can also be a database lookup
+	ServeTemplates(w, map[string]any{"r": r, "posts": posts}, []string{"views/base.html", "views/home.html"})
+}</code>
+</pre>
 
-### 
+<p>
+    This is what the HTML template looks like for posts:
+</p>
+
+<pre class="line-numbers">
+<code class="language-html">&lt;h2&gt;Posts&lt;/h2&gt;
+{{`{{range .posts}}`}}
+    &lt;div&gt;
+        &lt;h3&gt;
+            &lt;a href=&quot;/project/{{`{{.Codename}}`}}&quot;&gt;{{`{{.Title}}`}}&lt;/a&gt;
+        &lt;/h3&gt;
+        &lt;p&gt;{{`{{.Date}}`}} |&lt;/span&gt; {{`{{.Subtitle}}`}}&lt;/p&gt;
+    &lt;/div&gt;
+{{`{{end}}`}}</code>
+</pre>
+
+<p>
+    And this is what it looks like to apply a particular css class when the URL path matches one in the nav bar:
+</p>
+
+
+<pre class="line-numbers">
+<code class="language-html">&lt;nav&gt;
+    &lt;a href=&quot;/&quot; {{`{{if eq .r.URL.Path &quot;/&quot;}}`}}class=&quot;nav-active&quot;{{`{{end}}`}}&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;/books&quot; {{`{{if eq .r.URL.Path &quot;/books&quot;}}`}}class=&quot;nav-active&quot;{{`{{end}}`}}&gt;Book Reviews&lt;/a&gt;
+    &lt;a href=&quot;/sites&quot; {{`{{if eq .r.URL.Path &quot;/sites&quot;}}`}}class=&quot;nav-active&quot;{{`{{end}}`}}&gt;Sites&lt;/a&gt;
+    &lt;a href=&quot;/guestbook&quot; {{`{{if eq .r.URL.Path &quot;/guestbook&quot;}}`}}class=&quot;nav-active&quot;{{`{{end}}`}}&gt;Guestbook&lt;/a&gt;
+&lt;/nav&gt;</code>
+</pre>
+
+
+</div>
 
 {{end}}
