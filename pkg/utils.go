@@ -22,3 +22,7 @@ func ServeTemplates(w http.ResponseWriter, data any, templatePaths []string) err
 	}
 	return nil
 }
+
+
+
+

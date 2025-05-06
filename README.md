@@ -4,6 +4,7 @@ A guide for building fullstack websites in Go.
 - [x] Build Docker config and deploy
 - [x] Home page and introduction (Link to the thesis)
 - [x] Quickstart/Hello World
+- [ ] Add Dependabot to the project
 - [ ] A basic set of sections for fullstack web dev
 - [ ] SEO
 - [ ] QOL features. Sticky nav, click to copy, Ect.
